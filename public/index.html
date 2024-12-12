@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sorting Algorithm Visualization</h1>
+    </header>
+    
+    <div class="controls">
+        <!-- Array Input -->
+         <label>
+            Array Input:
+            <input type="text" id="arrayInput" placeholder="e.g., 5, 3, 7, 1">
+         </label>
+
+         <!-- Array Size -->
+          <label>
+            Array Size:
+            <input type="number" id="arraySize" min="2" max="100" value="10">
+          </label>
+
+          <!-- Animation Speed -->
+           <label>
+            Animation Speed:
+            <input type="range" id="speedControl" min="1" max="10" value="5">
+           </label>
+
+           <!-- Algorithm Selection -->
+            <label>
+                Sorting Algorithm:
+                <select id="algorithmSelect">
+                    <option value="bubble">Bubble Sort</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="insertion">Insertion Sort</option>
+                    <option value="merge">Merge Sort</option>
+                    <option value="quick">Quick Sort</option>
+                </select>
+            </label>
+
+            <!-- Buttons -->
+             <button id="stepButton">Step</button>
+             <button id="resetButton">Reset</button>
+             <button id="randomizeButton">Randomize Array</button>
+
+             <!-- Visualize Canvas -->
+              <canvas id="visualizationCanvas" width="800" height="400"></canvas>
+    </div>
+    <script src="src/index.js"></script>
+</body>
+</html>
