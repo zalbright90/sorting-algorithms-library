@@ -1,28 +1,129 @@
-body {
-    font-family: Arial, sans-serif;
+/* Universal Reset */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-  header {
+    justify-content: flex-start; /* Align everything to the top */
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Header */
+header {
     text-align: center;
-    margin: 20px 0;
-  }
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
     margin-bottom: 20px;
-  }
-  .controls label {
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Controls Section */
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Flexible button layout */
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 15px; /* Space between controls and visualization */
+}
+
+.controls label {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 14px;
-  }
-  canvas {
+    color: #555;
+}
+
+.controls input,
+.controls select,
+.controls button {
+    width: 16rem;
+    margin-top: 5px;
+    padding: 8px 12px; /* Standardize button/input sizes */
+    font-size: 14px;
     border: 1px solid #ccc;
-  }
+    border-radius: 4px;
+}
+
+.controls button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+.controls input[type="range"] {
+    width: 50%;
+}
+
+/* Visualization Canvas */
+#visualizationCanvas {
+    position: relative;
+    margin-top: 15px; /* Add space above the visualization */
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Canvas */
+canvas {
+    display: block;
+    width: 100%; /* Ensure it fills the container */
+    margin: 0 auto;
+}
+
+/* Bar Styling */
+.bar {
+    display: inline-block;
+    margin: 0 1px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease, height 0.3s ease;
+    border-radius: 2px; /* Optional: Softer edges */
+}
+
+.bar.active {
+    background-color: #ff5733;
+}
+
+.bar.sorted {
+    background-color: #28a745;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    .controls {
+        grid-template-columns: 1fr; /* Stack controls vertically on mobile */
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    #visualizationCanvas {
+        padding: 5px;
+        max-width: 400px;
+    }
+}

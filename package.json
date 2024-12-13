@@ -1,0 +1,16 @@
+{
+  "name": "sorting-algorithms-library",
+  "version": "1.0.0",
+  "description": "Develop a web application that visualizes various sorting algorithms in real-time, allowing users to interact with the visualization and experiment with different parameters. This project emphasizes modularity for scalability and maintainability.",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "gh-pages -d",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
+  }
+}
