@@ -1,5 +1,5 @@
 // Bubble Sort
-function bubbleSort(arr) {
+export function bubbleSort(arr) {
     const steps = [];
     let swapped;
     let arrLength = arr.length;
@@ -19,7 +19,7 @@ function bubbleSort(arr) {
 }
 
 // Selection Sort
-function selectionSort(arr) {
+export function selectionSort(arr) {
     const steps = [];
     let arrLength = arr.length;
     for (let i = 0; i < arrLength - 1; i++) {
@@ -37,7 +37,7 @@ function selectionSort(arr) {
 }
 
 // Insertion Sort
-function insertionSort(arr) {
+export function insertionSort(arr) {
     const steps = [];
     let arrLength = arr.length;
     for (let i = 0; i < arrLength; i++) {
@@ -52,11 +52,11 @@ function insertionSort(arr) {
         arr[j + 1] = key;
         steps.push([...arr]); // Save current array state
     }
+    return steps;
 }
-return steps;
 
 // Merge Sort (using recursion)
-function mergeSort(arr) {
+export function mergeSort(arr) {
     const steps = [];
 
     // Helper function to merge two halves
@@ -91,14 +91,14 @@ function mergeSort(arr) {
 }
 
 // Quick Sort (using recursion)
-function quickSort(arr) {
+export function quickSort(arr) {
     const steps = [];
 
     // Helper function to partition array
     function partition(arr, low, high) {
         let pivot = arr[high];
         let i = low - 1;
-        for (let j = low - 1; j < high; j++) {
+        for (let j = low; j < high; j++) {
             if (arr[j] < pivot) {
                 i++;
                 [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
@@ -121,5 +121,3 @@ function quickSort(arr) {
     sort(arr, 0, arr.length - 1);
     return steps;
 }
-
-export { bubbleSort, selectionSort, insertionSort, mergeSort, quickSort };
