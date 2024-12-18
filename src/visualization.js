@@ -1,33 +1,34 @@
 let array = [];
 let scaledArray = [];
 let canvasWidth, canvasHeight;
+let steps = [];
+let currentStep = 0;
 
-export function setupVisualization() {
-    canvasWidth = Math.max(window.innerWidth * 0.9, 100); // Minimum width
-    canvasHeight = Math.max(window.innerHeight * 0.5, 100); // Minimum height
+export function setupVisualization(inputArray = null) {
+    canvasWidth = Math.max(window.innerWidth * 0.9, 100); // Max width
+    canvasHeight = Math.max(window.innerHeight * 0.5, 100); // Max height
+
     const canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('visualizationCanvas');
-    noLoop(); // Ensure that p5.js only draws once until requested
-    background(220); // Set initial background
+    noLoop(); 
+    background(220);
 
-    // Generate the random array and scale it using map()
-    generateScaledArray();
-}
+    // Use input array or generate a default
+    if (inputArray) {
+        array = inputArray;
+    } else {
+        array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 10);
+    }
 
-// Function to generate the array and scale it
-export function generateScaledArray() {
-    array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 10); // Generate random array
-    console.log('Generated array:', array);
+    // Scale the array to fit canvas
+    scaledArray = array.map(value => map(value, 0, Math.max(...array), 0, canvasHeight));
 
-    // Map the values to fit within the canvas height
-    scaledArray = array.map(value => map(value, 0, 100, 0, canvasHeight));
-    console.log('Scaled array:', scaledArray);
+    drawArray(scaledArray);
 }
 
 // p5.js main draw function, continuously called
 export function draw() {
     background(220); // Clear the canvas
-
     if (scaledArray.length > 0) {
         drawArray(scaledArray); // Draw the array bars on the canvas
     }
@@ -53,12 +54,17 @@ export function animateSorting(stepsArray) {
 
 // Function to update the current step of animation
 export function updateStep() {
-    if (currentStep < steps.length) {
-        scaledArray = steps[currentStep]; // Update scaled array to current step
-        currentStep++;
-        drawArray(scaledArray); // Draw the array for the current step
+    if (currrentStep < steps.length) {
+        const currentStepArray = steps[currentStep];
+
+        // Rescale the current step's array
+        scaledArray = currentStepArray.map(value => map(value, 0, Math.max(...currentStepArray), 0, canvasHeight)
+    );
+
+    currentStep++;
+    drawArray(scaledArray);
     } else {
-        noLoop(); // Stop the animation when sorting is complete
+        noLoop();
     }
 }
 
@@ -67,4 +73,7 @@ export function windowResized() {
     canvasWidth = window.innerWidth * 0.9;
     canvasHeight = window.innerHeight * 0.5;
     resizeCanvas(canvasWidth, canvasHeight);
+
+    scaledArray = array.map(value => map(value, 0, canvasHeight));
+    drawArray(scaledArray);
 }
